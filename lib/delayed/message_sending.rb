@@ -22,11 +22,6 @@ module Delayed
       __delay__.__send__(method, *args)
     end
 
-    def send_at(time, method, *args)
-      warn '[DEPRECATION] `object.send_at(time, :method)` is deprecated. Use `object.delay(:run_at => time).method'
-      __delay__(:run_at => time).__send__(method, *args)
-    end
-
     module ClassMethods
       def handle_asynchronously(method, opts = {}) # rubocop:disable PerceivedComplexity
         aliased_method = method.to_s.sub(/([?!=])$/, '')
